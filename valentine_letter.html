@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+
+<style>
+/* ===== BODY & BACKGROUND ===== */
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* gradient animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== CARD STYLE ===== */
+.card {
+    background: rgba(255,255,255,0.97);
+    width: 90%;
+    max-width: 500px;
+    padding: 40px 30px;
+    border-radius: 35px;
+    box-shadow: 0 20px 60px rgba(255,105,180,0.3);
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+    position: relative;
+    z-index: 10;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 40px 90px rgba(255,105,180,0.5);
+    background: rgba(255,255,255,1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADINGS & TEXT ===== */
+h1 { 
+    background: linear-gradient(45deg, #ff4d6d, #ff758f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(255,105,180,0.3);
+}
+
+p {
+    color: #333;
+    line-height: 1.8;
+    font-size: 17px;
+    margin: 10px 0;
+}
+
+/* ===== HEART ANIMATION ===== */
+.heart {
+    font-size: 60px;
+    animation: beat 1s infinite;
+    text-shadow: 0 0 15px rgba(255,0,128,0.4);
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+}
+
+/* ===== INPUT ===== */
+input {
+    margin-top: 15px;
+    padding: 12px;
+    width: 80%;
+    border-radius: 30px;
+    border: 2px solid #ff4d6d;
+    text-align: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff758f;
+    box-shadow: 0 0 15px rgba(255,117,143,0.5);
+}
+
+/* ===== BUTTON ===== */
+button {
+    margin-top: 20px;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff4d6d, #ff758f);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 25px rgba(255,77,109,0.4);
+}
+
+button:hover {
+    transform: scale(1.15) rotate(-2deg);
+    box-shadow: 0 20px 40px rgba(255,77,109,0.5);
+}
+
+/* ===== PAGE 2 HIDDEN ===== */
+#page2 { display: none; }
+
+/* ===== FLOATING HEARTS ===== */
+.floating-heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 25px;
+    animation: floatUp 6s linear infinite;
+    text-shadow: 0 0 8px rgba(255,0,128,0.6);
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== 3D FLOWERS ===== */
+.flower {
+    position: absolute;
+    bottom: -60px;
+    width: 50px;
+    height: 50px;
+    transform-style: preserve-3d;
+    animation: flowerFloat 8s linear infinite;
+}
+
+.petal {
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    background: radial-gradient(circle, #ffb3c6, #ff4d6d);
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom center;
+}
+
+.center {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #ffd166;
+    border-radius: 50%;
+    top: 17px;
+    left: 17px;
+}
+
+@keyframes flowerFloat {
+    0% { transform: translateY(0) rotateX(0deg) rotateY(0deg); opacity:1;}
+    100% { transform: translateY(-120vh) rotateX(360deg) rotateY(360deg); opacity:0;}
+}
+
+/* ===== MODAL STYLE ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 400px;
+    margin: 15px;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    color: #e63946;
+}
+
+.modal-content button {
+    margin-top: 20px;
+}
+
+/* ===== HIDE AUDIO ===== */
+audio {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCAL MUSIC -->
+<audio id="valentineMusic" loop preload="auto" playsinline>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div id="page1" class="card">
+    <div class="heart">❤️</div>
+    <h1>Happy Valentine’s Day</h1>
+
+    <p>Enter the secret password 💕</p>
+    <p>Clue: It’s simple 😘</p>
+
+    <input type="password" id="password" placeholder="Enter password">
+    <br>
+    <button onclick="checkPassword()">Open My Message 💌</button>
+
+    <p style="margin-top:25px;font-weight:bold;color:#e63946;">
+        Love,<br>Your Name 💖
+    </p>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="card">
+    <div class="heart">💖</div>
+    <h1>My Message For You</h1>
+
+    <p><strong>Dear My Love,</strong></p>
+
+<p>
+    From the moment you came into my life,<br>
+    everything felt warmer, brighter, and lighter.<br>
+    It’s as if the world finally made sense,<br>
+    simply because you are in it.
+</p>
+
+<p>
+    On days when life feels heavy,<br>
+    I promise to choose you, support you,<br>
+    and stand by you through every challenge.<br>
+    You are my strength and my calm in the problems.
+</p>
+
+<p>
+    No matter what happens, I want you to know<br>
+    that my heart always belongs to you.<br>
+    In laughter, in tears, in every quiet moment,<br>
+    I am yours completely.
+</p>
+
+<p>
+    Thank you for your laughter,<br>
+    your warmth, and the love you give so freely.<br>
+    If there’s one thing I am sure of,<br>
+    it’s that you are my everything.
+</p>
+
+<p style="font-style:italic;">
+    I love you more.
+</p>
+
+    <button onclick="showModal('forever')">Click Here 💌</button>
+</div>
+
+<!-- MODALS -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h2 id="modal-title">Oops!</h2>
+        <p id="modal-message">Wrong password love 😢 Try again!</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+// ===== MUSIC =====
+const music = document.getElementById("valentineMusic");
+
+function fadeInMusic(audio, duration=3000){
+    audio.volume = 0;
+    audio.play().catch(()=>{});
+    let step = 0.05;
+    let interval = duration*step/1;
+    let vol = 0;
+    const fade = setInterval(()=>{
+        vol+=step;
+        if(vol>=1){
+            vol=1;
+            clearInterval(fade);
+        }
+        audio.volume=vol;
+    }, interval);
+}
+
+// ===== FLOATING HEARTS =====
+for(let i=0;i<25;i++){
+    let heart=document.createElement("div");
+    heart.className="floating-heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(5 + Math.random()*5)+"s";
+    heart.style.fontSize=(15 + Math.random()*25)+"px";
+    document.body.appendChild(heart);
+}
+
+// ===== 3D FLOWERS =====
+function createFlowers(){
+    for(let i=0;i<30;i++){
+        const flower=document.createElement("div");
+        flower.className="flower";
+        flower.style.left=Math.random()*100+"vw";
+        flower.style.animationDuration=(6 + Math.random()*6)+"s";
+
+        for(let p=0;p<6;p++){
+            const petal=document.createElement("div");
+            petal.className="petal";
+            petal.style.transform=`rotateY(${p*60}deg) translateZ(10px) rotateX(25deg)`;
+            flower.appendChild(petal);
+        }
+
+        const center=document.createElement("div");
+        center.className="center";
+        flower.appendChild(center);
+
+        document.body.appendChild(flower);
+    }
+}
+
+// ===== MODAL FUNCTIONS =====
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalMessage = document.getElementById('modal-message');
+
+function showModal(type){
+    if(type === 'wrong'){
+        modalTitle.textContent = "Oops!";
+        modalMessage.textContent = "Wrong password love 😢 Try again!";
+    } else if(type === 'forever'){
+        modalTitle.textContent = "Forever Yours ❤️";
+        modalMessage.textContent = "I LOVE YOU MORE. ❤️";
+    }
+    modal.style.display = "flex";
+}
+
+function closeModal(){
+    modal.style.display = "none";
+}
+
+// ===== PASSWORD CHECK =====
+function checkPassword(){
+    const pass=document.getElementById("password").value;
+    if(pass==="123"){
+        document.getElementById("page1").style.display="none";
+        document.getElementById("page2").style.display="block";
+        createFlowers();
+        fadeInMusic(music,3000);
+    } else {
+        showModal('wrong');
+    }
+}
+
+// play music on any click (required by some browsers)
+document.body.addEventListener('click', ()=>{
+    if(music.paused) music.play().catch(()=>{});
+});
+</script>
+</body>
+</html>
